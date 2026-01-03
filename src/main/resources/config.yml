@@ -1,0 +1,31 @@
+game:
+  # Tiempo para responder la pregunta (en segundos)
+  question-time: 20
+  # Cantidad de vidas que tiene el jugador
+  lives: 3
+  # Cuantas preguntas agarra por categoría
+  questions-per-category:
+    kinder: 7
+    basica: 10
+    media: 10
+    universidad: 10
+  # Los colores de cada respuesta
+  colors:
+    A: RED
+    B: GREEN
+    C: BLUE
+    D: YELLOW
+  # Chances de comodin (en %)
+  comodin-chances:
+    C: 50
+    B: 25
+    A: 15
+    S: 10
+  # Cada cuantas rondas hay un comodín
+  rounds-per-comodin: 5
+  # Cuanto tiempo tarda en mostrar la eliminación del jugador
+  eliminated-delay: 3.0
+  # Cuantos comodines puede tener un jugador
+  comodin-limit: 2
+  # Solo dejar en 'true' si se está probando algo
+  testing: false

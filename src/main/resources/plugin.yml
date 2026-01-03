@@ -1,0 +1,19 @@
+name: miscolegio
+version: '1.0'
+main: me.putindeer.miscolegio.Main
+api-version: '1.21'
+author: "putindeer"
+
+commands:
+  question:
+    description: Permite manejar las preguntas del juego
+    permission: miscolegio.staff
+  zone:
+    description: Gestiona zonas de juego
+    permission: miscolegio.staff
+  start:
+    description: Inicia el juego
+    permission: miscolegio.staff
+  forcestop:
+    description: Detiene el juego forzadamente
+    permission: miscolegio.staff
