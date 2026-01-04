@@ -109,7 +109,7 @@ public class ComodinManager {
 
                     session.getAliveOnlinePlayers().forEach(gamePlayer -> {
                         Player player = gamePlayer.getPlayer();
-                        if (player == null) return;
+                        if (player == null || !player.isOnline()) return;
 
                         ComodinType winner = playerComodines.get(gamePlayer.getUniqueId());
                         ComodinType[] display = new ComodinType[5];

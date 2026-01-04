@@ -7,6 +7,7 @@ import me.putindeer.miscolegio.comodin.ComodinType;
 import me.putindeer.miscolegio.zone.ZoneLocation;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -19,6 +20,7 @@ public class GamePlayer {
     private final String name;
     private int lives;
     private boolean alive = true;
+    private boolean eliminated = false;
     private ZoneLocation currentAnswer;
     private int correctAnswers = 0;
     private int comodines = 0;
@@ -42,6 +44,9 @@ public class GamePlayer {
         }
         if (player != null && player.isOnline()) {
             if (alive) {
+                if (lives * 2 > Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).getBaseValue()) {
+                    Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(lives * 2);
+                }
                 player.setHealth(lives * 2);
             } else {
                 player.setHealth(0.0001);
@@ -53,6 +58,9 @@ public class GamePlayer {
         lives++;
         Player player = getPlayer();
         if (player != null && player.isOnline()) {
+            if (lives * 2 > Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).getBaseValue()) {
+                Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(lives * 2);
+            }
             player.setHealth(lives * 2);
         }
     }

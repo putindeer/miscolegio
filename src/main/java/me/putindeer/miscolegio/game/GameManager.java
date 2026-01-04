@@ -169,7 +169,7 @@ public class GameManager implements Listener {
 
         healthTaskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, () -> Bukkit.getServer().getOnlinePlayers().forEach(player -> {
             GamePlayer gamePlayer = session.getPlayer(player.getUniqueId());
-            if (gamePlayer == null || !gamePlayer.isAlive()) return;
+            if (gamePlayer == null || (!gamePlayer.isAlive() && gamePlayer.isEliminated())) return;
             Objective objective = scoreboard.getObjective("LivesPL");
             Score score = Objects.requireNonNull(objective).getScore(player.getName());
 
@@ -290,7 +290,6 @@ public class GameManager implements Listener {
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(gamePlayer.getUniqueId());
             Player player = offlinePlayer.getPlayer();
             if (!offlinePlayer.isOnline() || player == null) {
-                gamePlayer.loseLife(session);
                 continue;
             }
 
@@ -328,6 +327,12 @@ public class GameManager implements Listener {
 
             ZoneLocation playerAnswer = gamePlayer.getCurrentAnswer();
 
+            if (playerAnswer == null) {
+                giveIncorrectAnswer(gamePlayer);
+                incorrect.add(gamePlayer);
+                continue;
+            }
+
             if (playerAnswer.equals(correctAnswer)) {
                 giveCorrectAnswer(gamePlayer);
                 correct.add(gamePlayer);
@@ -355,7 +360,7 @@ public class GameManager implements Listener {
             plugin.utils.broadcast("<gold>⊘ Evitaron pregunta: <white>" + skip.size());
         }
 
-        List<GamePlayer> eliminated = incorrect.stream().filter(gp -> !gp.isAlive()).toList();
+        List<GamePlayer> eliminated = session.getDeadPlayers().stream().filter(gp -> !gp.isEliminated()).toList();
         int eliminatedDelay = (int) plugin.getConfig().getDouble("game.eliminated-delay", 3) * 20;
         if (!eliminated.isEmpty()) {
             plugin.utils.delay(eliminatedDelay, () -> {
@@ -364,6 +369,7 @@ public class GameManager implements Listener {
                 int i = 0;
                 for (GamePlayer gamePlayer : eliminated) {
                     i++;
+                    gamePlayer.setEliminated(true);
                     float pitch = (float) Math.max(1 - ((double) i / 10), 0.5);
                     plugin.utils.delay(eliminatedDelay * (i - 1) + eliminatedDelay / 3, () -> {
                         Player player = gamePlayer.getPlayer();
