@@ -27,7 +27,13 @@ public class HubEvents implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.getGameMode() == GameMode.CREATIVE) return;
-        if (plugin.game.isGameInactive()) return;
+        if (plugin.game.isGameInactive()) {
+            player.getInventory().clear();
+            player.setGameMode(GameMode.ADVENTURE);
+            Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(20);
+            plugin.utils.setMaxHealth(player);
+            return;
+        }
         GamePlayer gamePlayer = plugin.game.getSession().getPlayer(player.getUniqueId());
         if (gamePlayer == null) {
             player.setGameMode(GameMode.SPECTATOR);
@@ -35,12 +41,7 @@ public class HubEvents implements Listener {
         }
         if (!gamePlayer.isAlive() && gamePlayer.isEliminated()) {
             player.setGameMode(GameMode.SPECTATOR);
-            return;
         }
-        player.getInventory().clear();
-        player.setGameMode(GameMode.ADVENTURE);
-        Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(20);
-        plugin.utils.setMaxHealth(player);
     }
 
     @EventHandler
