@@ -51,7 +51,7 @@
               <relocations>
                   <relocation>
                       <pattern>fr.mrmicky.fastboard</pattern>
-                      <shadedPattern>us.polarismc.polarisduels.fastboard</shadedPattern>
+                      <shadedPattern>me.putindeer.miscolegio.fastboard</shadedPattern>
                   </relocation>
               </relocations>
           </configuration>

@@ -3,6 +3,7 @@ version: '1.0'
 main: me.putindeer.miscolegio.Main
 api-version: '1.21'
 author: "putindeer"
+description: "Plugin de preguntas para el evento Miscolegio"
 
 commands:
   question:
