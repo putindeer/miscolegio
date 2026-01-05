@@ -17,3 +17,6 @@ commands:
   forcestop:
     description: Detiene el juego forzadamente
     permission: miscolegio.staff
+  reload:
+    description: Recarga la configuración del plugin
+    permission: miscolegio.staff

@@ -36,5 +36,6 @@ public class StartThings {
         new ZoneCommand(plugin);
         new StartCommand(plugin);
         new ForceStopCommand(plugin);
+        new ReloadCommand(plugin);
     }
 }
