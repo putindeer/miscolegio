@@ -30,8 +30,6 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        game.removeLifeIndicator();
-        game.removeBarrierCapsule();
-        game.removeBarriers();
+        start.disable();
     }
 }

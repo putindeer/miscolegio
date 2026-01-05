@@ -23,6 +23,12 @@ public class StartThings {
         registerCommands();
     }
 
+    public void disable() {
+        plugin.game.removeLifeIndicator();
+        plugin.game.removeBarrierCapsule();
+        plugin.game.removeBarriers();
+    }
+
     private void registerManagers() {
         plugin.question = new QuestionManager(plugin);
         plugin.zone = new ZoneManager(plugin);
