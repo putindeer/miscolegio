@@ -1,6 +1,6 @@
 # Miscolegio
 
-Plugin de Minecraft (Spigot/Paper) para para un evento de preguntas por rondas con categorías por nivel, comodines y sistema de eliminación. (1.21+)
+Plugin de Minecraft (Spigot/Paper) para un evento de preguntas por rondas con categorías por nivel, comodines y sistema de eliminación. (1.21+)
 
 ![License](https://img.shields.io/github/license/putindeer/woof-quests?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/putindeer/woof-quests?style=flat-square)
